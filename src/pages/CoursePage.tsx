@@ -197,35 +197,40 @@ const CoursePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-blue-500 to-green-400 text-white py-6">
-        <div className="container mx-auto px-4">
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold">谭青青的个人主页</Link>
-            <nav>
-              <ul className="flex space-x-6">
-                <li><Link to="/" className="hover:text-blue-100 transition-colors">首页</Link></li>
-                <li><Link to="/" className="hover:text-blue-100 transition-colors">课程</Link></li>
-                <li><Link to="/" className="hover:text-blue-100 transition-colors">技能</Link></li>
-              </ul>
-            </nav>
+            <Link to="/" className="text-2xl font-bold text-indigo-600">谭青青</Link>
+            <div className="hidden md:flex space-x-8">
+              <Link to="/" className="text-gray-700 hover:text-indigo-600 font-medium">首页</Link>
+              <Link to="/" className="text-gray-700 hover:text-indigo-600 font-medium">课程</Link>
+              <Link to="/" className="text-gray-700 hover:text-indigo-600 font-medium">技能</Link>
+            </div>
+            <div className="md:hidden">
+              <button className="text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </header>
+      </nav>
 
       {/* Course Content */}
       <main className="container mx-auto px-4 py-12">
         {/* Course Header */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8">
+        <div className="card p-8 mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-blue-700 mb-2">{course.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">{course.name}</h1>
               <p className="text-gray-600">高职大二第二学期课程</p>
             </div>
             <button 
               onClick={() => navigate('/')}
-              className="mt-4 md:mt-0 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+              className="mt-4 md:mt-0 btn btn-secondary"
             >
               返回首页
             </button>
@@ -238,7 +243,7 @@ const CoursePage: React.FC = () => {
           {/* Skills Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             {course.skills.map((skill, index) => (
-              <span key={index} className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+              <span key={index} className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">
                 {skill}
               </span>
             ))}
@@ -256,8 +261,8 @@ const CoursePage: React.FC = () => {
         </div>
 
         {/* Course Objectives */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-blue-700 mb-4">课程目标</h2>
+        <div className="card p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">课程目标</h2>
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             {course.objectives.map((objective, index) => (
               <li key={index}>{objective}</li>
@@ -266,11 +271,11 @@ const CoursePage: React.FC = () => {
         </div>
 
         {/* Course Syllabus */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-blue-700 mb-6">课程大纲</h2>
+        <div className="card p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">课程大纲</h2>
           <div className="space-y-8">
             {course.syllabus.map((week) => (
-              <div key={week.week} className="border-l-4 border-blue-500 pl-4">
+              <div key={week.week} className="border-l-4 border-indigo-500 pl-4">
                 <h3 className="text-xl font-semibold text-gray-800 mb-2">第{week.week}周：{week.title}</h3>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   {week.content.map((item, index) => (
@@ -283,34 +288,34 @@ const CoursePage: React.FC = () => {
         </div>
 
         {/* Assessment */}
-        <div className="bg-white rounded-xl shadow-md p-8 mb-8">
-          <h2 className="text-2xl font-bold text-blue-700 mb-4">评估方式</h2>
+        <div className="card p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">评估方式</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h3 className="font-semibold text-gray-800 mb-2">平时作业</h3>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div className="bg-blue-500 h-4 rounded-full" style={{ width: `${course.assessment.assignments}%` }}></div>
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full" style={{ width: `${course.assessment.assignments}%` }}></div>
               </div>
               <p className="mt-2 text-sm text-gray-600">{course.assessment.assignments}%</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h3 className="font-semibold text-gray-800 mb-2">项目实践</h3>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div className="bg-blue-500 h-4 rounded-full" style={{ width: `${course.assessment.project}%` }}></div>
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full" style={{ width: `${course.assessment.project}%` }}></div>
               </div>
               <p className="mt-2 text-sm text-gray-600">{course.assessment.project}%</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h3 className="font-semibold text-gray-800 mb-2">期末考试</h3>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div className="bg-blue-500 h-4 rounded-full" style={{ width: `${course.assessment.finalExam}%` }}></div>
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full" style={{ width: `${course.assessment.finalExam}%` }}></div>
               </div>
               <p className="mt-2 text-sm text-gray-600">{course.assessment.finalExam}%</p>
             </div>
-            <div className="bg-blue-50 p-4 rounded-lg">
+            <div className="bg-gray-50 p-4 rounded-lg">
               <h3 className="font-semibold text-gray-800 mb-2">课堂参与</h3>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div className="bg-blue-500 h-4 rounded-full" style={{ width: `${course.assessment.participation}%` }}></div>
+              <div className="w-full bg-gray-200 rounded-full h-3">
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full" style={{ width: `${course.assessment.participation}%` }}></div>
               </div>
               <p className="mt-2 text-sm text-gray-600">{course.assessment.participation}%</p>
             </div>
@@ -318,8 +323,8 @@ const CoursePage: React.FC = () => {
         </div>
 
         {/* Resources */}
-        <div className="bg-white rounded-xl shadow-md p-8">
-          <h2 className="text-2xl font-bold text-blue-700 mb-4">参考资料</h2>
+        <div className="card p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">参考资料</h2>
           <ul className="list-disc list-inside text-gray-700 space-y-2">
             {course.resources.map((resource, index) => (
               <li key={index}>{resource}</li>
@@ -329,10 +334,18 @@ const CoursePage: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 mt-12">
-        <div className="container mx-auto px-4 text-center">
-          <p className="mb-2">谭青青 - 商务数据分析与应用专业</p>
-          <p className="text-gray-400 text-sm">© 2026 个人主页</p>
+      <footer className="bg-gray-900 text-white py-12 mt-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h3 className="text-xl font-bold mb-2">谭青青</h3>
+              <p className="text-gray-400">商务数据分析与应用专业</p>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-gray-400 mb-2">© 2026 个人主页</p>
+              <p className="text-gray-500 text-sm">广东科学技术职业学院商学院</p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
