@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>谭青青 - 数据分析师作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-cream: #F8F4E9;
+            --primary-rose: #E8D5C4;
+            --primary-teal: #7A9D96;
+            --primary-brown: #8C7851;
+            --primary-charcoal: #2C3639;
+            --white: #FFFFFF;
+            --text-gray: #5F5F5F;
+            --border-gray: #E5E1D8;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: var(--primary-charcoal);
+            background-color: var(--primary-cream);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-brown);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-charcoal);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--primary-cream) 0%, var(--primary-rose) 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%237a9d96' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-charcoal);
+            letter-spacing: 0.05em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero .career-goal {
+            font-size: 1.125rem;
+            color: var(--primary-brown);
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-charcoal);
+            position: relative;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-teal), var(--primary-brown));
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--white);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--primary-cream);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--primary-teal);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-charcoal);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--primary-cream);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background-color: var(--primary-teal);
+            transition: width 1.5s ease;
+        }
+
+        .skill-percentage {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            text-align: right;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary-rose);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-charcoal);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .project-tools {
+            font-size: 0.875rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+        }
+
+        .project-outcome {
+            font-weight: 500;
+            color: var(--primary-brown);
+        }
+
+        /* Certificates Section */
+        .certificates {
+            background-color: var(--primary-cream);
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .certificate-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-charcoal);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        /* Tech Stack Section */
+        .tech-stack {
+            background-color: var(--white);
+        }
+
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-category {
+            background-color: var(--primary-cream);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-charcoal);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .tech-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tool {
+            background-color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            color: var(--primary-teal);
+            box-shadow: var(--shadow);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-cream);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .contact-item a {
+            text-decoration: none;
+            color: var(--primary-brown);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .contact-item a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-teal);
+            transition: width 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-teal);
+        }
+
+        .contact-item a:hover::after {
+            width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-charcoal);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-teal), transparent);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .motto {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            color: var(--primary-rose);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                padding: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                color: var(--primary-charcoal);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid,
+            .certificates-grid,
+            .tech-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">谭青青</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="#hero">首页</a>
+                <a href="#projects">项目</a>
+                <a href="#skills">技能</a>
+                <a href="#contact">联系</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>谭青青</h1>
+                <div class="subtitle">广东科学技术职业学院 商学院</div>
+                <div class="subtitle">商务数据分析与应用专业，高职大二第二学期</div>
+                <div class="career-goal">职业目标：成为数据分析领域的专业人才，为企业决策提供数据支持</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <p>对商业逻辑与数据结合有强烈好奇，逻辑缜密；持续通过网课（如B站/和鲸社区）自学。我热爱数据分析，善于从复杂数据中提取有价值的信息，并将其转化为可执行的业务建议。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">技能</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-name">Python</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="85%"></div>
+                    </div>
+                    <div class="skill-percentage">85%</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">数据分析</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="80%"></div>
+                    </div>
+                    <div class="skill-percentage">80%</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">SQL</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="75%"></div>
+                    </div>
+                    <div class="skill-percentage">75%</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">数据可视化</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="70%"></div>
+                    </div>
+                    <div class="skill-percentage">70%</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">网络爬虫</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="65%"></div>
+                    </div>
+                    <div class="skill-percentage">65%</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">供应链分析</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="background-color: var(--primary-blue); width: 0%;" data-width="60%"></div>
+                    </div>
+                    <div class="skill-percentage">60%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">项目经验</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">电商销售数据分析</div>
+                    <div class="project-tools">Python, Pandas</div>
+                    <div class="project-description">清洗万条订单数据，分析用户复购率与RFM模型，输出运营优化建议。</div>
+                    <div class="project-outcome">成果：通过RFM模型识别高价值客户，为运营团队提供精准营销策略。</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">供应链库存预测</div>
+                    <div class="project-tools">SQL, Excel</div>
+                    <div class="project-description">利用历史出库数据建立简单线性回归预测模型，库存周转率提升12%。</div>
+                    <div class="project-outcome">成果：库存周转率提升12%，减少库存积压，降低运营成本。</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">物流效率可视化看板</div>
+                    <div class="project-tools">Tableau / Power BI</div>
+                    <div class="project-description">设计交互式仪表板，实时展示区域时效与成本，获学院实训优秀案例。</div>
+                    <div class="project-outcome">成果：获学院实训优秀案例，为物流管理提供数据支持。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificates">
+        <div class="container">
+            <h2 class="section-title">证书与竞赛</h2>
+            <div class="certificates-grid">
+                <div class="certificate-card">
+                    <div class="certificate-name">计算机一级证书</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-name">计算机二级证书</div>
+                </div>
+                <div class="certificate-card">
+                    <div class="certificate-name">英语一级证书</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="tech-stack">
+        <div class="container">
+            <h2 class="section-title">技术栈</h2>
+            <div class="tech-categories">
+                <div class="tech-category">
+                    <div class="category-title">数据处理</div>
+                    <div class="tech-tools">
+                        <span class="tech-tool">Pandas</span>
+                        <span class="tech-tool">NumPy</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="category-title">可视化</div>
+                    <div class="tech-tools">
+                        <span class="tech-tool">Matplotlib</span>
+                        <span class="tech-tool">Seaborn</span>
+                        <span class="tech-tool">Tableau</span>
+                        <span class="tech-tool">Power BI</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="category-title">数据库</div>
+                    <div class="tech-tools">
+                        <span class="tech-tool">MySQL</span>
+                        <span class="tech-tool">SQLite</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <div class="category-title">其它</div>
+                    <div class="tech-tools">
+                        <span class="tech-tool">Jupyter</span>
+                        <span class="tech-tool">Git</span>
+                        <span class="tech-tool">Scikit-learn</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系方式</h2>
+            <div class="contact-content">
+                <div class="contact-item">邮箱：<a href="mailto:2438708803@qq.com">2438708803@qq.com</a></div>
+                <div class="contact-item">GitHub：<a href="https://github.com/tanqingqing" target="_blank">github.com/tanqingqing</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="motto">用数据洞察真相</div>
+                <div class="copyright">© <span id="currentYear"></span> 谭青青. 保留所有权利.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animate skill bars on scroll
+        const skillProgresses = document.querySelectorAll('.skill-progress');
+        let animated = false;
+
+        function animateSkillBars() {
+            if (animated) return;
+            
+            const skillsSection = document.querySelector('.skills');
+            const skillsSectionTop = skillsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (skillsSectionTop < windowHeight * 0.8) {
+                skillProgresses.forEach(progress => {
+                    const width = progress.getAttribute('data-width');
+                    progress.style.width = width;
+                });
+                animated = true;
+            }
+        }
+
+        // Update current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Event listeners
+        window.addEventListener('scroll', animateSkillBars);
+        window.addEventListener('load', animateSkillBars);
+    </script>
+</body>
+</html>
